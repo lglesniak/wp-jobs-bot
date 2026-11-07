@@ -1,5 +1,5 @@
 {
-    "name": "dmytruk/wp-jobs-bot",
+    "name": "lglesniak/wp-jobs-bot",
     "description": "Daily Telegram digest of new WordPress developer vacancies from job board RSS feeds.",
     "type": "project",
     "license": "MIT",
