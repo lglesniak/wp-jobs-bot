@@ -1,0 +1,44 @@
+name: Daily vacancies
+
+on:
+  schedule:
+    # 06:00 UTC = 08:00 Kyiv in winter, 09:00 in summer.
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-vacancies
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl, mbstring, simplexml
+          tools: composer
+
+      - run: composer install --no-dev --no-interaction --no-progress --prefer-dist
+
+      - name: Send new vacancies to Telegram
+        run: php bin/run.php
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      # The list of sent vacancies is committed back, so the next run skips them.
+      # This also keeps the repository active, so GitHub does not pause the schedule.
+      - name: Save sent vacancies
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/seen.json
+          git diff --staged --quiet || (git commit -m "Update sent vacancies" && git push)

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Test feed</title>
+        <item>
+            <title>Middle WordPress Developer &amp; WooCommerce</title>
+            <link>https://jobs.example.com/vacancies/101/?utm_source=jobsrss</link>
+            <description>&lt;p&gt;Custom&amp;nbsp;themes&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ACF PRO&lt;/li&gt;&lt;li&gt;REST API&lt;/li&gt;&lt;/ul&gt;</description>
+        </item>
+        <item>
+            <title><![CDATA[Senior PHP <WordPress> Engineer]]></title>
+            <link>https://jobs.example.com/vacancies/102/</link>
+            <description><![CDATA[<p>Remote, Europe</p>]]></description>
+        </item>
+        <item>
+            <title>Item without link is skipped</title>
+            <description>No link</description>
+        </item>
+    </channel>
+</rss>
