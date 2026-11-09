@@ -51,7 +51,7 @@ In the repository: **Settings → Secrets and variables → Actions → New repo
 
 ### 3. Run it
 
-**Actions → Daily vacancies → Run workflow** to test immediately. After that it runs every day at 06:00 UTC.
+**Actions → Daily vacancies → Run workflow** to test immediately. After that it runs every day at about 05:17 UTC (GitHub may delay scheduled runs).
 
 The first run sends everything currently in the feeds (up to `max_per_run`); later runs send only new vacancies.
 
